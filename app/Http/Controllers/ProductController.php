@@ -32,4 +32,28 @@ class ProductController extends Controller
 
         return redirect()->route('dashboard');
     }
+
+    
+    public function delete(Request $request, $id) {
+        $product = Product::find($id);
+
+        $product->delete();
+        
+        return redirect()->route('dashboard');
+        
+
+    }
+    
+    public function update(Request $request, $id) {
+        $product = Product::find($id);
+    
+            $product->update([
+                'name' => $request->get('name'),
+                'image' => $request->get('image'),
+                'description' => $request->get('description'),
+            ]);
+    
+        return redirect()->route('dashboard');
+        
+    }
 }

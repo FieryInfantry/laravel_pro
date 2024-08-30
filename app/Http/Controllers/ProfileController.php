@@ -8,8 +8,8 @@ class ProfileController extends Controller
 {
     //
     public function index(){
-        $email = "eme@email.com";
-        $name = "Onsub Hehe";
+        $email = "alsymon@email.com";
+        $name = "Alsymon";
         return view('profile')
         ->with("email", $email)
         ->with("name", $name);
