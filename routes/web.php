@@ -12,3 +12,4 @@ Route::get('/products/create',[ProductController::class, 'create'])->name('produ
 Route::post('/products/store', [ProductController::class, 'store'])->name('store_product');//Pang save ng product
 Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('delete_product');
 Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('update_product');
+
