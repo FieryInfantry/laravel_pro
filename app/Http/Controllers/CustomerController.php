@@ -12,6 +12,7 @@ class CustomerController extends Controller
     public function index()
     {
         //
+        return Customer::get();
     }
 
     /**
@@ -27,16 +28,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $field = $request->validated(
-            [
-                'name' => 'required',
-                'age' => 'required',
-                'mobile_no' => 'required',
-                'email'=> 'email'
-            ]
-            );
-            $customer = Customer::create($field);
+        $fields = $request->validate([
+            'name' => 'required|string',
+            'age' => 'required|integer',
+            'mobile_no' => 'required|string',
+            'email'=> 'required|email'
+        ]);
+    
+        $customer = Customer::create($fields);
+    
+        return response()->json($customer, 201); // HTTP 201 for created resource
     }
+    
 
     /**
      * Display the specified resource.
@@ -59,17 +62,17 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $field = $request->validated(
-            [
-                'name' => 'required',
-                'age' => 'required',
-                'mobile_no' => 'required',
-                'email'=> 'email'
-            ]
-            );
-            $customer = Customer::update($field);
-            return $customer;
+        $fields = $request->validate([
+            'name' => 'required|string',
+            'age' => 'required|integer',
+            'mobile_no' => 'required|string',
+            'email'=> 'required|email'
+        ]);
+    
+        $customer->update($fields);
+        return $customer;
     }
+    
 
     /**
      * Remove the specified resource from storage.
